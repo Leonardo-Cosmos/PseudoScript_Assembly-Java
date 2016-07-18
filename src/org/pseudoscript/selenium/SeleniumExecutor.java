@@ -36,7 +36,7 @@ public class SeleniumExecutor {
 		inputTextbox.sendKeys(text);
 	}
 
-	@Operation(name = "XPath", parameters = { @Parameter(type = "String", name = "XPath") })
+	@Operation(name = "Click", parameters = { @Parameter(type = "String", name = "XPath") })
 	public void click(String xPath) {
 		WebElement element = driver.findElement(By.xpath(xPath));
 		element.click();
