@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "Selenium")
+@XmlRootElement(name = "selenium")
 public class SeleniumConfig {
 
 	public static final String BROWSER_CHROME = "Chrome";
