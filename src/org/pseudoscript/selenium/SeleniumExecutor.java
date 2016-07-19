@@ -13,15 +13,7 @@ public class SeleniumExecutor {
 	private WebDriver driver;
 
 	public SeleniumExecutor() {
-		
-	}
-	
-	public WebDriver getDriver() {
-		return driver;
-	}
-
-	public void setDriver(WebDriver driver) {
-		this.driver = driver;
+		driver = DriverFactory.getChromeWebDriver();
 	}
 
 	@Operation(name = "OpenURL", parameters = { @Parameter(type = "String", name = "Url") })
