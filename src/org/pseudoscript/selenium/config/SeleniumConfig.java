@@ -3,6 +3,7 @@ package org.pseudoscript.selenium.config;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.List;
@@ -45,26 +46,44 @@ public class SeleniumConfig {
 	}
 	
 	public static void save(SeleniumConfig config) {
+		OutputStream output = null;
 		try {
-			OutputStream output = new FileOutputStream(XML_FILE_PATH);
+			output = new FileOutputStream(XML_FILE_PATH);
 			MARSHALLER.marshal(config, output);
 		} catch (FileNotFoundException ex) {
 			ex.printStackTrace();
 		} catch (JAXBException ex) {
 			ex.printStackTrace();
+		} finally {
+			if (output != null) {
+				try {
+					output.close();
+				} catch (IOException ex) {
+					ex.printStackTrace();
+				}
+			}
 		}
 	}
 	
 	public static SeleniumConfig load() {
 		SeleniumConfig config = null;
+		InputStream input = null;
 		try {
-			InputStream input = new FileInputStream(XML_FILE_PATH);
+			input = new FileInputStream(XML_FILE_PATH);
 			config = (SeleniumConfig) UNMARSHALLER.unmarshal(input);
 		} catch (FileNotFoundException ex) {
 			ex.printStackTrace();
 		} catch (JAXBException ex) {
 			ex.printStackTrace();
-		}		
+		} finally {
+			if (input != null) {
+				try {
+					input.close();
+				} catch (IOException ex) {
+					ex.printStackTrace();
+				}
+			}
+		}
 		return config;
 	}
 	
